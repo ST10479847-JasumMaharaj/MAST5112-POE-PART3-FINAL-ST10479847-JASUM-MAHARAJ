@@ -129,3 +129,34 @@ addButtonText: {
   fontSize: 16,
 },
 });
+
+
+//CODE ATTRIBUTION
+//TITLE: <SaveButton>
+//AUTHOR: Marmelab
+//Date:11/11/2025
+//AVALIABLE: https://marmelab.com/react-admin/SaveButton.html
+
+//CODE ATTRIBUTION
+//TITLE: Navigating Between Screens
+//AUTHOR: React Native
+//Date:10/11/2025
+//AVALIABLE: https://reactnative.dev/docs/navigation
+
+//CODE ATTRIBUTION
+//TITLE:  Style
+//AUTHOR: React Native
+//Date:12/11/2025
+//AVALIABLE: https://reactnative.dev/docs/style
+
+//CODE ATTRIBUTION
+//TITLE:  Catering food hd 8k wallpaper stock photographic image | Premium AI-generated image
+//AUTHOR: FreePik
+//Date:11/11/2025
+//AVALIABLE: https://i.pinimg.com/1200x/00/b9/68/00b96842342cbc847e8433b7f97343da.jpg
+
+//CODE ATTRIBUTION
+//TITLE:  The IIE Mobile App Scripting MAST5112/p/w MODULE MANUAL 2025
+//AUTHOR: The Independant Institute of Education
+//Date:10/11/2025
+//AVALIABLE: https://advtechonline.sharepoint.com/:w:/r/sites/TertiaryStudents/_layouts/15/Doc.aspx?sourcedoc=%7BC4AAF478-96AC-4469-8005-F7CDC4A15EBB%7D&file=MAST5112MM.docx&action=default&mobileredirect=true
