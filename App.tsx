@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
     fontSize: 20, fontWeight: 'bold', marginBottom: 10
   },
   card: {
-    backgroundColor: '#f2f3c8ff',
+    backgroundColor: '#e4fbfcff',
     padding: 12,
     marginVertical: 8,
     borderRadius: 8,
