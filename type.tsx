@@ -12,7 +12,7 @@ export interface MenuItem {
 
 // Define navigation routes for type-safe screen transitions
 export type RootStackParamList = {
-  Welcome: undefined;
+    MenuManager: undefined;
   AddItem: undefined;
   Filter: undefined;
 };
