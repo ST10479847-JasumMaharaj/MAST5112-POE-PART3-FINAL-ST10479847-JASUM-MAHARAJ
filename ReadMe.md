@@ -16,10 +16,12 @@ POE FINAL PART <br>
 - Since having made less commits in part 2 was my only downfall, i figured i was on the right track with what i currently have. <br>
 
 2. File Structure <br>
-├── App.tsx <br> 
-  - ├── MenuManager Screen <br>
-  - ├── Welcome Screen <br>
-├──AddItem.tsx          
-├── Filter.tsx            
-├── type.ts               
-├── README.md  
+```
+├── App.tsx  
+    ├── MenuManager Screen  
+    ├── Welcome Screen  
+├── AddItem.tsx  
+├── Filter.tsx  
+├── type.ts  
+├── README.md
+```
