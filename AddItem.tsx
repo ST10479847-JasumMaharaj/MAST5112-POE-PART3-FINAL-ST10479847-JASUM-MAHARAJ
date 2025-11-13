@@ -6,30 +6,37 @@ import { TouchableOpacity, ImageBackground  } from 'react-native';
 
 
 type Props = {
-  menuItems: MenuItem[];
-  setMenuItems: React.Dispatch<React.SetStateAction<MenuItem[]>>;
+  menuItems: MenuItem[]; // current list of menu items
+  setMenuItems: React.Dispatch<React.SetStateAction<MenuItem[]>>;  // function to update the list
 };
 
 export default function AddItem({ menuItems, setMenuItems }: Props) {
+
+  //State to store user input for each field
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [course, setCourse] = useState<CourseType>('Starter');
   const [price, setPrice] = useState('');
 
+  // Function to handle adding a new item
   const handleAdd = () => {
+
+    // This is to validate input: all fields must be filled, and price must be a number
     if (!name || !description || !price || isNaN(Number(price))) {
       Alert.alert('Please fill in all fields with valid data.');
       return;
     }
 
+    // Create a new menu item object
     const newItem: MenuItem = {
-      id: `item-${menuItems.length + 1}`,
+      id: `item-${menuItems.length + 1}`, // generate a simple unique ID
       name,
       description,
       course,
       price: parseFloat(price),
     };
 
+    // Add the new item to the list
     setMenuItems(prev => [...prev, newItem]);
 
     setName('');
@@ -39,14 +46,18 @@ export default function AddItem({ menuItems, setMenuItems }: Props) {
   };
 
   return (
-          <ImageBackground
+    // Background image for the AddItem screen
+    <ImageBackground
       source={{uri: 'https://i.pinimg.com/1200x/00/b9/68/00b96842342cbc847e8433b7f97343da.jpg'}}
       style={styles.background}
       resizeMode="cover"
     >
-    <View style={styles.overlay}>
+
+      {/* Overlay to make content readable over the image */}
+     <View style={styles.overlay}>
       <Text style={styles.header}>Add New Menu Item</Text>
 
+      {/* Input for dish name */}
       <TextInput
         style={styles.input}
         placeholder="Dish Name"
@@ -54,6 +65,7 @@ export default function AddItem({ menuItems, setMenuItems }: Props) {
         onChangeText={setName}
       />
 
+      {/* Input for dish description */}
       <TextInput
         style={styles.input}
         placeholder="Description"
@@ -61,6 +73,7 @@ export default function AddItem({ menuItems, setMenuItems }: Props) {
         onChangeText={setDescription}
       />
 
+      {/* Picker to select course type */}
       <Text style={styles.label}>Course Type</Text>
       <Picker
         selectedValue={course}
@@ -72,22 +85,25 @@ export default function AddItem({ menuItems, setMenuItems }: Props) {
         <Picker.Item label="Dessert" value="Dessert" />
       </Picker>
 
+      {/* Input for price */}
       <TextInput
         style={styles.input}
         placeholder="Price"
         value={price}
         onChangeText={setPrice}
-        keyboardType="numeric"
+        keyboardType="numeric" // Ensures a numeric keyboard appears for user input
       />
 
-     <TouchableOpacity style={styles.addButton} onPress={handleAdd}>
-  <Text style={styles.addButtonText}>Add Item</Text>
-</TouchableOpacity>
-    </View>
+      {/* Button to add the item */}
+      <TouchableOpacity style={styles.addButton} onPress={handleAdd}>
+       <Text style={styles.addButtonText}>Add Item</Text>
+      </TouchableOpacity>
+     </View>
     </ImageBackground>
   );
 }
 
+// Styles for the layout and design of the entire AddItem Screen
 const styles = StyleSheet.create({
  background: {
     flex: 1,
