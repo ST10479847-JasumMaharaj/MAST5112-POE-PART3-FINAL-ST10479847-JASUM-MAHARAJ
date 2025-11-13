@@ -6,9 +6,13 @@ import { MenuItem } from './type';
 import AddItem from './AddItem';
 import Filter from './Filter';
 
+// Main App component
 export default function App() {
+
+  // Track which screen is currently active
   const [screen, setScreen] = useState<'welcome' | 'menu' | 'add' | 'filter'>('welcome');
 
+   // Store the full list of menu items
   const [menuItems, setMenuItems] = useState<MenuItem[]>([
     {
       id: '1',
@@ -33,16 +37,22 @@ export default function App() {
     },
   ]);
 
+   // Function to remove an item by its ID
   const removeItem = (id: string) => {
     setMenuItems(prev => prev.filter(item => item.id !== id));
   };
+
+  // Function to calculate average price per course
 const getAveragePrices = () => {
     const grouped: { [key: string]: number[] } = {};
+
+    // Group prices by course type
     menuItems.forEach(item => {
       if (!grouped[item.course]) grouped[item.course] = [];
       grouped[item.course].push(item.price);
     });
-
+    
+    // Calculate average for each course
     const averages: { [key: string]: string } = {};
     Object.keys(grouped).forEach(course => {
       const prices = grouped[course];
@@ -53,54 +63,62 @@ const getAveragePrices = () => {
     return averages;
   };
 
+  // Welcome Screen
   if (screen === 'welcome') {
     return (
+      // Background image for the welcome screen
       <ImageBackground
-  source={{uri: 'https://i.pinimg.com/736x/7f/90/65/7f90654ba899eff1d0813c386037980d.jpg'}}
-  style={styles.background}
-  resizeMode="cover"
->
+         source={{uri: 'https://i.pinimg.com/736x/7f/90/65/7f90654ba899eff1d0813c386037980d.jpg'}}
+         style={styles.background}
+         resizeMode="cover"
+      >
       <View style={styles.overlay}>
         <Text style={styles.title}>Welcome to Silver Spoon by Christoffel</Text>
         <Text style={styles.subtitle}>Your luxury 5-star restaurant experience — right on your screen.</Text>
+
+        {/* Button to enter the main menu screen */}
         <TouchableOpacity style={styles.enterButton} onPress={() => setScreen('menu')}>
-      <Text style={styles.enterButtonText}>Explore our menu</Text>
-    </TouchableOpacity>
+         <Text style={styles.enterButtonText}>Explore our menu</Text>
+        </TouchableOpacity>
 
       </View>
       </ImageBackground>
     );
   }
-
+    // AddItem Screen
   if (screen === 'add') {
     return (
       <View style={styles.container}>
         <AddItem menuItems={menuItems} setMenuItems={setMenuItems}/>
+
         <TouchableOpacity style={styles.backButton} onPress={() => setScreen('menu')}>
-  <Text style={styles.backButtonText}>Back to Menu</Text>
-</TouchableOpacity>
+          <Text style={styles.backButtonText}>Back to Menu</Text>
+        </TouchableOpacity>
       </View>
     );
   }
 
+   //Filter Screen
   if (screen === 'filter') {
     return (
       <View style={styles.container}>
         <Filter menuItems={menuItems}/>
         
-<TouchableOpacity style={styles.backButton} onPress={() => setScreen('menu')}>
-  <Text style={styles.backButtonText}>Back to Menu</Text>
-</TouchableOpacity>
+      <TouchableOpacity style={styles.backButton} onPress={() => setScreen('menu')}>
+         <Text style={styles.backButtonText}>Back to Menu</Text>
+      </TouchableOpacity>
 
       </View>
     );
   }
 
   return (
+    //Default Screen: Menu Manager
     <View style={styles.container}>
       <Text style={styles.homeTitle}>Chef Christoffel's Menu</Text>
       <Text>Total Items: {menuItems.length}</Text>
 
+      {/* List of all menu items */}
       <FlatList
         data={menuItems}
         keyExtractor={item => item.id}
@@ -109,33 +127,39 @@ const getAveragePrices = () => {
             <Text style={styles.name}>{item.name}</Text>
             <Text>{item.description}</Text>
             <Text>{item.course} - R{item.price.toFixed(2)}</Text>
+            
+            {/* Button to remove menu item */}
             <TouchableOpacity style={styles.removeButton} onPress={() => removeItem(item.id)}>
-  <Text style={styles.removeButtonText}>Remove</Text>
-</TouchableOpacity>
+              <Text style={styles.removeButtonText}>Remove</Text>
+            </TouchableOpacity>
 
           </View>
         )}
       />
-  <View style={styles.averageBox}>
+
+      {/* Display average price per course */}
+      <View style={styles.averageBox}>
         <Text style={styles.averageHeader}>Average Price per Course:</Text>
         {Object.entries(getAveragePrices()).map(([course, avg]) => (
           <Text key={course} style={styles.averageText}>{course}: {avg}</Text>
         ))}
       </View>
 
+       {/* Button to go to Add Item screen */}
+      <TouchableOpacity style={styles.addButton} onPress={() => setScreen('add')}>
+       <Text style={styles.addButtonText}>Add Item</Text>
+      </TouchableOpacity>
 
-     <TouchableOpacity style={styles.addButton} onPress={() => setScreen('add')}>
-  <Text style={styles.addButtonText}>Add Item</Text>
-</TouchableOpacity>
-
+      {/* Button to go to Filter screen */}
       <TouchableOpacity style={styles.filterButton} onPress={() => setScreen('filter')}>
-  <Text style={styles.filterButtonText}>Filter Menu</Text>
-</TouchableOpacity>
+        <Text style={styles.filterButtonText}>Filter Menu</Text>
+      </TouchableOpacity>
 
     </View>
   );
 }
 
+// styles for welcome screen and menu manager
 const styles = StyleSheet.create({
   container: { flex: 1, padding: 20, justifyContent: 'center', backgroundColor: "#d2e6d0ff"},
   title: {fontSize: 20, fontWeight: 'bold', marginBottom: 10, color: "#ffffff" },
