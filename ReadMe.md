@@ -17,8 +17,8 @@ POE FINAL PART <br>
 
 2. File Structure <br>
 ├── App.tsx <br> 
-<br> ├── MenuManager Screen <br>
-<br> ├── Welcome Screen <br>
+  - ├── MenuManager Screen <br>
+  - ├── Welcome Screen <br>
 ├──AddItem.tsx          
 ├── Filter.tsx            
 ├── type.ts               
